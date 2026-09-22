@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - "feature/**"
+      - "chore/**"
+      - "fix/**"
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore LankaMart.sln
+
+      - name: Build solution
+        run: dotnet build LankaMart.sln --configuration Release --no-restore
+
+      - name: Run service tests
+        run: dotnet run --project src/LankaMart.ServiceTests/LankaMart.ServiceTests.csproj --configuration Release --no-restore
+
