@@ -1,6 +1,8 @@
 # SE3090 — Lecture 04 Demo Project
 ## LankaMart: Database Design, Authentication, Authorization and Integration
 
+Lab 08 CI workflow is configured with GitHub Actions.
+
 This is the working code behind Lecture 04. It is the **same LankaMart API you met in
 Lecture 03**, with the two things that lecture deliberately left out:
 
